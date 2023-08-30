@@ -6,15 +6,17 @@ class SecretHolder {
 
     buildSecretManager() {
         let secret = "";
-      
+
         function revealSecret() {
             if (!this.hasSecret) return "[no secret here yet]";
             return secret;
         }
-        function hideSecret(newSecret) {
+
+        function hideSecret(value) {
             if (!this.hasSecret) this.hasSecret = true;
-            secret = newSecret;
+            secret = value;
         }
+
         function destroySecret(newSecret) {
             if (this.hasSecret) this.hasSecret = false;
             secret = "";
@@ -24,13 +26,15 @@ class SecretHolder {
     }
 }
 
-const safe = new SecretHolder()
+const safeSecret = new SecretHolder();
 
-console.log("- Do u have a secret?\n" + safe.hasSecret)
-console.log("- Tell me the secret!\n" + safe.getSecret())
-safe.setSecret("este é meu segredo")
-console.log("- Do u have a secret?\n" + safe.hasSecret)
-console.log("- Tell me the secret!\n" + safe.getSecret())
-safe.forgetSecret()
-console.log("- Do u have a secret?\n" + safe.hasSecret)
-console.log("- Tell me the secret!\n" + safe.getSecret())
+console.log("- Do u have a secret?\n" + safeSecret.hasSecret);
+console.log("- Tell me the secret!\n" + safeSecret.getSecret());
+
+safeSecret.setSecret("este é meu segredo");
+console.log("- Do u have a secret?\n" + safeSecret.hasSecret);
+console.log("- Tell me the secret!\n" + safeSecret.getSecret());
+
+safeSecret.forgetSecret();
+console.log("- Do u have a secret?\n" + safeSecret.hasSecret);
+console.log("- Tell me the secret!\n" + safeSecret.getSecret());
